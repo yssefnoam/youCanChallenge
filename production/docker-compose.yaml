@@ -1,0 +1,23 @@
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8000:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./sites/:/app
+    networks:
+      - productionNet
+    depends_on:
+      - php
+
+  php:
+    image: php:7-fpm
+    networks:
+      - productionNet
+    volumes:
+      - ./sites/:/app
+
+
+networks:
+  productionNet:
