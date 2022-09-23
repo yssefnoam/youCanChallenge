@@ -2,6 +2,8 @@
 
 ### Overview
 
+<img width="1338" alt="Screen Shot 2022-09-23 at 11 40 18 AM" src="https://user-images.githubusercontent.com/36737715/191944112-83befdbb-b039-49a1-9df4-c9745547ba8b.png">
+
 ### Tools:
  * [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
  * [docker and docker-compose](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04)
