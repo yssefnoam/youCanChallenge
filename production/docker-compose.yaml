@@ -8,6 +8,7 @@ services:
       - ./sites/:/app
     networks:
       - productionNet
+    restart: always
     depends_on:
       - php
 
@@ -15,6 +16,7 @@ services:
     image: php:7-fpm
     networks:
       - productionNet
+    restart: always
     volumes:
       - ./sites/:/app
 
