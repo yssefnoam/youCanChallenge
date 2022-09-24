@@ -1,0 +1,47 @@
+- name: get docker and docker-compose info
+  hosts: localhost
+  tasks:
+    # - name: Get info on docker host
+    #   docker_host_info:
+    #   register: docker_info
+    # - debug: msg={{docker_info}}
+
+    - name: check if docker is installed
+      command: docker --version docker-compose --version
+      register: docker_version
+    - debug: msg={{docker_version.stdout_lines[0]}}
+
+    - name: check if docker-compose is installed
+      command: docker-compose --version
+      register: docker_compose_version
+    - debug: msg={{docker_compose_version.stdout_lines[0]}}
+
+- name: Run services 
+  hosts: localhost
+  tasks:
+    - name: run services
+      community.docker.docker_compose:
+        project_src: production
+    
+    - name: check is containers running
+      command: docker ps
+      register: running_containers
+    - debug: msg={{running_containers.stdout_lines}}
+      
+- name: Checking is the websites
+  hosts: localhost
+  tasks:
+    - name: check server test1.testycan.shop is running
+      command: "curl --header 'Host: test1.testycan.shop' localhost:8000"
+      register: curl_result
+    - debug: msg={{curl_result.stdout_lines}}
+
+    - name: check server test2.testycan.shop is running
+      command: "curl --header 'Host: test2.testycan.shop' localhost:8000"
+      register: curl_result
+    - debug: msg={{curl_result.stdout_lines}}
+
+    - name: check server test3.testycan.shop is running
+      command: "curl --header 'Host: test3.testycan.shop' localhost:8000"
+      register: curl_result
+    - debug: msg={{curl_result.stdout_lines}}
