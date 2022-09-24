@@ -31,17 +31,17 @@
 - name: Checking is the websites
   hosts: localhost
   tasks:
-    - name: check server test1.testycan.shop is running
+    - name: check website test1.testycan.shop is running
       command: "curl --header 'Host: test1.testycan.shop' localhost:8000"
       register: curl_result
     - debug: msg={{curl_result.stdout_lines}}
 
-    - name: check server test2.testycan.shop is running
+    - name: check website test2.testycan.shop is running
       command: "curl --header 'Host: test2.testycan.shop' localhost:8000"
       register: curl_result
     - debug: msg={{curl_result.stdout_lines}}
 
-    - name: check server test3.testycan.shop is running
+    - name: check website test3.testycan.shop is running
       command: "curl --header 'Host: test3.testycan.shop' localhost:8000"
       register: curl_result
     - debug: msg={{curl_result.stdout_lines}}

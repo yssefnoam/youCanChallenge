@@ -1,0 +1,7 @@
+- name: docker compose down
+  hosts: localhost
+  tasks:
+    - name: docker compose down
+      community.docker.docker_compose:
+        project_src: tests
+        state: absent
