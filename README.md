@@ -20,7 +20,7 @@
     ansible-playbook test_env.yaml
     ```
   
-### Testing: 
+### Production_env: 
   * To test this run:
     * test 1:
     ```
@@ -33,4 +33,18 @@
     * test 3:
     ```
       curl --header 'Host: test3.testycan.shop' localhost:8000
+    ```
+### Test_env: 
+  * To test this run:
+    * test 1:
+    ```
+      curl --header 'Host: test1.testycan.shop' localhost:9000
+    ```
+    * test 2: 
+    ```
+      curl --header 'Host: test2.testycan.shop' localhost:9000
+    ```
+    * test 3:
+    ```
+      curl --header 'Host: test3.testycan.shop' localhost:9000
     ```
