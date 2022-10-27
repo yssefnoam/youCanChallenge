@@ -1,7 +1,6 @@
 - name: docker compose down
   hosts: localhost
+  vars_files: vars/test.yaml
   tasks:
     - name: docker compose down
-      community.docker.docker_compose:
-        project_src: tests
-        state: absent
+      shell: docker rm -f "{{project_name}}_nginx_1" && docker rm  -f "{{project_name}}_php_1"
