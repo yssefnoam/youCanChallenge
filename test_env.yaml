@@ -11,32 +11,56 @@
       register: docker_compose_version
     - debug: msg={{docker_compose_version.stdout_lines[0]}}
 
-- name: Run services 
+- name: Run services
   hosts: localhost
+  vars_files: vars/test.yaml
   tasks:
     - name: run services
       community.docker.docker_compose:
-        project_src: tests
-    
+        project_name: "{{project_name}}"
+        definition:
+          services:
+            nginx:
+              image: nginx:{{nginx_version}}
+              ports:
+                - "{{app_port}}:80"
+              volumes:
+                - "{{nginx_conf_dir}}:/etc/nginx/conf.d/"
+                - "{{app_dir}}:/app"
+              networks:
+                - ycanNet
+              restart: always
+              depends_on:
+                - php
+            php:
+              image: php:7-fpm
+              networks:
+                - ycanNet
+              restart: always
+              volumes:
+                - "{{app_dir}}:/app"
+          networks:
+            ycanNet:
+
     - name: check is containers running
       command: docker ps
       register: running_containers
     - debug: msg={{running_containers.stdout_lines}}
-      
 - name: Checking is the websites
   hosts: localhost
+  vars_files: vars/test.yaml
   tasks:
     - name: check website test1.testycan.shop is running
-      command: "curl --header 'Host: test1.testycan.shop' localhost:9000"
+      command: "curl --header 'Host: test1.testycan.shop' localhost:{{app_port}}"
       register: curl_result
     - debug: msg={{curl_result.stdout_lines}}
 
     - name: check website test2.testycan.shop is running
-      command: "curl --header 'Host: test2.testycan.shop' localhost:9000"
+      command: "curl --header 'Host: test2.testycan.shop' localhost:{{app_port}}"
       register: curl_result
     - debug: msg={{curl_result.stdout_lines}}
 
     - name: check website test3.testycan.shop is running
-      command: "curl --header 'Host: test3.testycan.shop' localhost:9000"
+      command: "curl --header 'Host: test3.testycan.shop' localhost:{{app_port}}"
       register: curl_result
     - debug: msg={{curl_result.stdout_lines}}
