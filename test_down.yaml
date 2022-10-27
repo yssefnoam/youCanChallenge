@@ -1,5 +1,5 @@
 - name: docker compose down
-  hosts: localhost
+  hosts: test_server
   vars_files: vars/test.yaml
   tasks:
     - name: docker compose down
