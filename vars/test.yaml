@@ -1,0 +1,5 @@
+project_name: test
+app_port: 80
+nginx_version: latest
+nginx_conf_dir: /Users/ynoam/Desktop/youCanChallenge/test/nginx
+app_dir: /Users/ynoam/Desktop/youCanChallenge/test/sites/ 
