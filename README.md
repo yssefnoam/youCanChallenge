@@ -38,13 +38,13 @@
   * To test this run:
     * test 1:
     ```
-      curl --header 'Host: test1.testycan.shop' localhost:9000
+      curl --header 'Host: test1.testycan.shop' localhost:80
     ```
     * test 2: 
     ```
-      curl --header 'Host: test2.testycan.shop' localhost:9000
+      curl --header 'Host: test2.testycan.shop' localhost:80
     ```
     * test 3:
     ```
-      curl --header 'Host: test3.testycan.shop' localhost:9000
+      curl --header 'Host: test3.testycan.shop' localhost:80
     ```
